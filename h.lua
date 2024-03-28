@@ -1252,7 +1252,7 @@ function eventKeyboard(name, key, down, x, y)
         end
     elseif key == 1 then
         if not tfm.get.room.playerList[name].isJumping and players[name].events.canJump then
-            tfm.exec.movePlayer(name, 0, 0, false, 0, -75, false)
+            tfm.exec.movePlayer(name, 0, 0, false, nil, -75, false)
         end
     elseif key == 32 then
         if players[name].events.balloon.started and players[name].playing then
