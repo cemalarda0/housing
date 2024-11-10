@@ -1,6 +1,5 @@
 local players, playing, colored, admin = {}, {}, {}, {
-    ["Poklava#0000"] = "0x0004FF",
-    ["Damlaa#6069"] = "0x008ebf"
+    ["Poklava#0000"] = "0x0004FF"
 }
 local maps =
     {'<C><P L="4000" H="3500" F="1" DS="m;1547,1200,1239,1043,1898,1201,1287,1201" MEDATA=";;;;-0;0:::1-"/><Z><S><S T="9" X="1116" Y="1199" L="257" H="33" P="0,0,0,0,0,0,0,0"/><S T="12" X="1132" Y="976" L="290" H="180" P="0,0,0,0,0,0,0,0" o="2F1540" c="4"/><S T="0" X="2086" Y="1081" L="10" H="410" P="0,0,0.3,0.2,0,0,0,0"/><S T="0" X="1402" Y="1120" L="10" H="162" P="0,0,0,0.2,-50,0,0,0" c="3"/><S T="12" X="1248" Y="1203" L="10" H="44" P="0,0,0.3,0.2,0,0,0,0" o="A77545" N=""/><S T="0" X="1337" Y="1165" L="10" H="205" P="0,0,0.3,0.2,0,0,0,0" c="4"/><S T="0" X="1431" Y="1144" L="10" H="243" P="0,0,0.3,0.2,-50,0,0,0" c="4"/><S T="0" X="985" Y="1084" L="10" H="408" P="0,0,0.3,0.2,0,0,0,0"/><S T="0" X="1534" Y="881" L="1112" H="10" P="0,0,0.3,0.2,0,0,0,0" N=""/><S T="0" X="1278" Y="942" L="10" H="118" P="0,0,0.3,0.2,0,0,0,0" N=""/><S T="6" X="1536" Y="1250" L="1100" H="71" P="0,0,0.3,0.2,0,0,0,0" N=""/><S T="12" X="1119" Y="1220" L="267" H="10" P="0,0,0.3,0.2,0,0,0,0" o="A77545" N=""/><S T="0" X="1167" Y="1066" L="365" H="14" P="0,0,0.3,0.2,0,0,0,0" N=""/></S><D><P X="2056" Y="1216" T="67" P="0,1"/><P X="2005" Y="1216" T="68" P="1,0"/><P X="1954" Y="1216" T="67" P="0,0"/><P X="1844" Y="1216" T="67" P="0,1"/><P X="1793" Y="1216" T="68" P="1,0"/><P X="1742" Y="1216" T="67" P="0,0"/><P X="1095" Y="1062" T="17" P="1,0"/><P X="1181" Y="1065" T="127" C="784939,A31638" P="1,0"/><P X="1012" Y="1065" T="127" C="784939,A31638" P="1,0"/><P X="1103" Y="1028" T="21" P="0,0"/><P X="1628" Y="1217" T="1" P="0,0"/><P X="1693" Y="1242" T="5" P="0,2"/><P X="1733" Y="1242" T="5" P="0,2"/><P X="1773" Y="1242" T="5" P="0,2"/><P X="1813" Y="1242" T="5" P="0,2"/><P X="1853" Y="1242" T="5" P="0,2"/><P X="1893" Y="1242" T="5" P="0,2"/><P X="1933" Y="1242" T="5" P="0,2"/><P X="1973" Y="1242" T="5" P="0,2"/><P X="2013" Y="1242" T="5" P="0,2"/><P X="2053" Y="1242" T="5" P="0,2"/><P X="1289" Y="1242" T="5" P="0,2"/><P X="1649" Y="1242" T="5" P="0,2"/><P X="1609" Y="1242" T="5" P="0,2"/><P X="1569" Y="1242" T="5" P="0,2"/><P X="1529" Y="1242" T="5" P="0,2"/><P X="1489" Y="1242" T="5" P="0,2"/><P X="1449" Y="1242" T="5" P="0,2"/><P X="1409" Y="1242" T="5" P="0,2"/><P X="1369" Y="1242" T="5" P="0,2"/><P X="1329" Y="1242" T="5" P="0,2"/><P X="2007" Y="1178" T="73" P="0,0"/><P X="1795" Y="1176" T="71" P="0,0"/><P X="1896" Y="1217" T="148" P="0,0"/><P X="1128" Y="918" T="192" P="1,0"/><P X="1099" Y="1024" T="52" P="1,0"/></D><O><O X="1115" Y="1186" C="610" P="0"/><O X="1335" Y="1046" C="612" P="0"/><O X="1421" Y="1201" C="604" P="0"/></O><L/></Z></C>',
@@ -321,12 +320,11 @@ function eventPlayerLeft(name)
 end
 
 function eventNewGame()
-    tfm.exec.setUIMapName("EVCİLİİİİİK")
     if gameStarted then
         ui.removeTextArea(10)
         ui.removeTextArea(600)
         tfm.exec.newGame(maps[2])
-        for name in next, tfm.get.room.playerList do -- Nick döndürür
+        for name in next, tfm.get.room.playerList do
             tfm.exec.setNameColor(name, admin[name] and admin[name] or colored[name] and colored[name] or 0xff0000)
             if players[name].interfaces.shopOpened then
                 for _, i in next, {123, 124, 125, 126} do
@@ -346,7 +344,7 @@ function eventNewGame()
         end
     else
         tfm.exec.newGame(maps[1])
-        for name in next, tfm.get.room.playerList do -- Nick döndürür
+        for name in next, tfm.get.room.playerList do
             if admin[name] then
                 ui.addTextArea(600,
                     "\n<font color='#FF0000'><p align='center'>[ADMİN KOMUTLARI]</p><p align='left'></font>\n<font color='#000000'>!basla</font><font color='#ffffff'> : </font><font color='#000000'>Oyunu başlatır.</font>\n\n<font color='#000000'>!lobi</font><font color='#ffffff'> : </font><font color='#000000'>Oyunu bitirir.</font>\n\n<font color='#000000'>!rich [oyuncuAdı] [miktar]</font><font color='#ffffff'> : </font><font color='#000000'>Oyuncuya para ekler.</font>\n\n<font color='#000000'>!kill [oyuncuAdı]</font><font color='#ffffff'> : \n</font><font color='#000000'>Oyuncuyu öldürür.</font>\n\n<font color='#000000'>!r [oyuncuAdı]</font><font color='#ffffff'> : \n</font><font color='#000000'>Oyuncuyu canlandırır.</font>\n\n<font color='#000000'>!afk [oyuncuAdı]</font><font color='#ffffff'> : \n</font><font color='#000000'>Oyuncuyu AFK mod'a alır.</font>\n\n<font color='#000000'>!community [oyuncuAdı] [TR-EN]</font><font color='#ffffff'> : </font><font color='#000000'>Oyuncunun oyun dilini değiştirir.</font>\n\n<font color='#000000'>!color [oyuncuAdı] [kod]</font><font color='#ffffff'> : </font><font color='#000000'>Oyuncunun isim rengini değiştirir.</p></font>",
